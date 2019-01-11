@@ -48,3 +48,11 @@ we concluded that the first strobe pulse doesn't point to a recorded frame.
 
 In the longer recordings (30-60 mins), a rondom number of the frames could be lost. But using the frame counter and timestamps of the reocrded
 frames we were able to identify the lost frames (the the strobe pulses that don't have a matching recorded frame).
+
+Short description of the code files:
+cameraSyncTest.ipynb : the code for extracting the strobe pulsed recorded by the Intan
+framesCheck_rawImages : the code for extracting the timestamps and frame counter from the recorded frames saved as RAW images and detecting
+the missed frames.
+framesCheck_avi : the code for extracting the timestamps and frame counter from the recorded frames saved as avi video and detecting
+the missed frames. (this didn't work for long recording, since Matlab didn't load the whole video)
+cameraControlTest.m : the code used for triggering the camera through the USB6001 NI-card when using the camera in mode 0

@@ -1,2 +1,1 @@
-Designing the connections and code for the behavioral signals: recording from the photodiode sensing the visual stimulation, lick sensor(s),
-strobe signal from the camera and the tags for trial timings, and initiating the reward through the step motor. 
+Designing the connections and code for the behavioral signals: using a usb ni cards (USB6001) to record the photodiode that senses the visual stimulation, lick sensor(s), strobe signal from the camera and the tags for trial timings, and also to send the reward through the step motor. 

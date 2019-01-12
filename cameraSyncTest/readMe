@@ -1,8 +1,6 @@
-The synchronization of the blackFly series camera (BFLY-PGE-13S2M-CS from FLIR) was tested successfully. This test doesn't include the
-picture settings of the camera (the recordings were done without any lenses attached to the camera).
+The synchronization of the blackFly series camera (BFLY-PGE-13S2M-CS from FLIR) was tested successfully. This test doesn't include the picture settings of the camera (the recordings were done without any lenses attached to the camera).
 
-The interface of this model is through a network card and the power could be (was) provided through the network cable (the PCI network adapter from
-the FLIR needs to be connected to the SATA power of the motherboard to be able to provide the power for the camera). 
+The interface of this model is through a network card and the power could be (was) provided through the network cable (the PCI network adapter from the FLIR needs to be connected to the SATA power of the motherboard to be able to provide the power for the camera). 
 
 Softwares Names of this camera:
 FlyCapture: is used for setting the parameters and recording the frames
@@ -12,8 +10,7 @@ Pakcetsize also should be set to 9000 in the FlyCapture "Costum Video Modes" tab
 
 We used this camera in the free-running mode (when the trigger is disabled), while the strobe signal on GPIO 1 (white wire) is enabled.
 
-To use the strobe signal on the white pin/wire, this pin should be pulled-up. We used the camera output 3.3v on the red pin for this pull-up
-To enable the output 3.3v, bit31 in register 0x19D0 should be set to 1. Then a 1kOhm resister was assembled between red and white wires.
+To use the strobe signal on the white pin/wire, this pin should be pulled-up. We used the camera output 3.3v on the red pin for this pull-up To enable the output 3.3v, bit31 in register 0x19D0 should be set to 1. Then a 1kOhm resister was assembled between red and white wires.
 The brown (camera power ground) and blue (camera isolated output ground) wires should be connected together and connected to the Intan ground.
 
 
@@ -33,26 +30,21 @@ For stoping the recording:
 
 The recording were done in RAW images and also avi video format (large avi files couldn't be read successfully with Matlab)
 
-Pixel format used in this test was Mono 8. (In case of recording the frames in avi format, other bits/pixel could not be read with Matlab
-or Python). Windows seems that is not be able to show 12 & 16 bits/pixel images!
+Pixel format used in this test was Mono 8. (In case of recording the frames in avi format, other bits/pixel could not be read with Matlab or Python). Windows seems that is not be able to show 12 & 16 bits/pixel images!
 
 In the Camera settings tab in FlyCapture, boxes for Auto and On/Off for the FrameRate should be selected (FrameRate=30) why?
 
-The timestamps and frame counter should be enabled in the "Advance Camera Settings" tab for determining the lost frames (the mismatch between
-the strobe pulses and the number of the recorded frames).
+The timestamps and frame counter should be enabled in the "Advance Camera Settings" tab for determining the lost frames (the mismatch between the strobe pulses and the number of the recorded frames).
 
 In the relatively short recordings (few seconds), the number of strobe signals (extracted from the recorded singal on the ADC of Intan, 
-see the Jupyter notebook),is just one more than the recorded frames. By checking the timestamps of the recorded frames 
-(see the codes in the m-file used to extract the timestamps), also looking the strobe pulse shapes, and the different shape of the first pulse 
+see the Jupyter notebook),is just one more than the recorded frames. By checking the timestamps of the recorded frames (see the codes in the m-file used to extract the timestamps), also looking the strobe pulse shapes, and the different shape of the first pulse 
 we concluded that the first strobe pulse doesn't point to a recorded frame.
 
-In the longer recordings (30-60 mins), a rondom number of the frames could be lost. But using the frame counter and timestamps of the reocrded
-frames we were able to identify the lost frames (the the strobe pulses that don't have a matching recorded frame).
+In the longer recordings (30-60 mins), a rondom number of the frames could be lost. But using the frame counter and timestamps of the reocrded frames we were able to identify the lost frames (the the strobe pulses that don't have a matching recorded frame).
 
 Short description of the code files:
 cameraSyncTest.ipynb : the code for extracting the strobe pulsed recorded by the Intan
-framesCheck_rawImages : the code for extracting the timestamps and frame counter from the recorded frames saved as RAW images and detecting
-the missed frames.
+framesCheck_rawImages : the code for extracting the timestamps and frame counter from the recorded frames saved as RAW images and detecting the missed frames.
 framesCheck_avi : the code for extracting the timestamps and frame counter from the recorded frames saved as avi video and detecting
 the missed frames. (this didn't work for long recording, since Matlab didn't load the whole video)
 cameraControlTest.m : the code used for triggering the camera through the USB6001 NI-card when using the camera in mode 0

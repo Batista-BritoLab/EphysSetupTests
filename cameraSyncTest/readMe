@@ -4,9 +4,10 @@ The interface of this model is through a network card and the power could be (wa
 
 Softwares Names of this camera:
 FlyCapture: is used for setting the parameters and recording the frames
+Pakcetsize also should be set to 9000 in the FlyCapture "Costum Video Modes" tab. 
 DriverControlGUI: through this, filter driver should be enabled: Enablefilterdriver
 GigEConfigurator: through this, MTU should be set to 9000 (after enabling Jumbo Pakcet to 9014 in the network card settings)
-Pakcetsize also should be set to 9000 in the FlyCapture "Costum Video Modes" tab. 
+
 
 We used this camera in the free-running mode (when the trigger is disabled), while the strobe signal on GPIO 1 (white wire) is enabled.
 
